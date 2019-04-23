@@ -1,0 +1,10 @@
+
+
+figure {
+    @apply rounded overflow-hidden shadow inline-block;
+
+
+    img + figcaption {
+        @apply block text-center bg-white font-semibold text-gray-600 py-2;
+    }
+}

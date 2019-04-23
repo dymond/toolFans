@@ -1,0 +1,14 @@
+.btn {
+    @apply appearance-none inline-block px-4 py-3 shadow rounded font-bold;
+
+    &:hover {
+        @apply shadow-lg;
+    }
+
+    &.btn-primary {
+        @apply bg-yellow-600 text-yellow-900;
+
+    }
+
+
+}

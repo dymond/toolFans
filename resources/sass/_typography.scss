@@ -1,0 +1,289 @@
+
+h1, h2, h3, h4, h5, h6 {
+    @apply text-indigo-800 leading-normal mt-4;
+}
+
+h1 {
+    @apply text-5xl font-bold;
+}
+
+h2 {
+    @apply text-4xl font-bold;
+}
+
+h3 {
+    @apply text-3xl font-bold;
+}
+
+h4 {
+    @apply text-2xl font-bold;
+}
+
+h5 {
+    @apply text-xl font-bold;
+}
+
+h6 {
+    @apply text-lg font-bold;
+}
+
+a {
+    @apply text-indigo-500 font-semibold ;
+
+    &:hover {
+        @apply text-indigo-600;
+    }
+}
+
+
+p + p {
+    @apply mt-4;
+}
+
+cite {
+    @apply italic;
+
+    &:before {
+        content: '- ';
+    }
+
+
+}
+
+blockquote {
+    @apply border-l-4 pl-2 ;
+
+    cite {
+        @apply block text-right font-bold mt-2;
+    }
+
+
+}
+
+
+pre {
+    @apply bg-gray-200 border border-gray-400 rounded p-2 font-mono;
+}
+
+code {
+    @apply font-mono;
+}
+
+samp {
+    @apply font-bold text-indigo-800 ;
+}
+
+p > code {
+    @apply bg-gray-200 border border-gray-400 rounded py-1 px-2 font-mono;
+}
+
+kbd {
+    @apply bg-gray-200 border border-gray-400 rounded py-1 px-1 font-mono shadow;
+}
+
+hr {
+    @apply border-b;
+}
+
+
+// TABLE
+//table {
+//    @apply w-full border-collapse table-auto table rounded overflow-hidden bg-white;
+//
+//}
+//
+//caption {
+//    @apply py-2 font-bold text-2xl bg-indigo-800 text-indigo-100;
+//}
+//
+//thead {
+//
+//    tr {
+//
+//        @apply rounded bg-gray-400 uppercase;
+//    }
+//
+//
+//}
+//
+//tbody {
+//    @apply ;
+//
+//}
+//
+//tfoot {
+//    @apply bg-white rounded-b-lg;
+//
+//    tr {
+//
+//        td {
+//            @apply py-2;
+//
+//        }
+//
+//    }
+//}
+//
+//.table-responsive {
+//    //@apply block w-full overflow-x-auto;
+//    -webkit-overflow-scrolling: touch;
+//    -ms-overflow-style: -ms-autohiding-scrollbar;
+//}
+
+
+
+table {
+    @apply w-full border-separate;
+
+
+    caption {
+        @apply py-2 font-bold text-2xl text-indigo-800;
+    }
+
+    th {
+        @apply font-semibold;
+
+        .th-wrap {
+            display: flex;
+            align-items: center;
+            .icon {
+                margin-left: 0.5rem;
+                margin-right: 0;
+                font-size: 1rem;
+            }
+            &.is-numeric {
+                flex-direction: row-reverse;
+                text-align: right;
+                .icon {
+                    margin-left: 0;
+                    margin-right: 0.5rem;
+                }
+            }
+            &.is-centered {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        &.is-current-sort {
+            @apply border-gray-500 font-bold;
+
+            //border-color: $grey;
+            //font-weight: $weight-bold;
+        }
+        &.is-sortable:hover {
+            @apply border-gray-500;
+            //border-color: $grey;
+        }
+        &.is-sortable,
+        &.is-sortable .th-wrap {
+            cursor: pointer;
+        }
+    }
+    tr {
+        &.is-selected {
+            .checkbox input {
+                &:checked + .check {
+                    //background: $table-row-active-color url(checkmark($table-row-active-background-color)) no-repeat center center;
+                }
+                + .check {
+                    //border-color: $table-row-active-color;
+                }
+            }
+        }
+        &.is-empty:hover {
+            background-color: transparent;
+        }
+    }
+    .chevron-cell {
+        vertical-align:middle
+    }
+    .checkbox-cell {
+        width: 40px;
+        .checkbox {
+            vertical-align: middle;
+            .check {
+                transition: none;
+            }
+        }
+    }
+    tr.detail {
+        //box-shadow: inset 0 1px 3px $gray-200;
+        //background: $white-bis;
+        .detail-container {
+            padding: 1rem;
+        }
+    }
+    &:focus {
+        @apply border-indigo-500;
+        //box-shadow: 0 0 0 0.125em rgba($link, 0.25);
+    }
+
+    // Modifiers
+    &.is-bordered {
+        th.is-current-sort,
+        th.is-sortable:hover {
+            //border-color: $gray-200;
+            //background: $background;
+        }
+    }
+
+
+   @screen md {
+    &.has-mobile-cards {
+        thead {
+            display: none;
+        }
+
+        tfoot {
+            th {
+                border: 0; // Disable is-bordered
+                display: inherit;
+            }
+        }
+
+        tr {
+            @apply block relative shadow bg-red-500;
+            // Card style — Cannot extend inside media query
+            max-width: 100%;
+
+            td {
+                @apply border-0 p-2;
+                display: inherit;
+
+                &:last-child {
+                    @apply border-b-0;
+                }
+            }
+
+            &:not(:last-child) {
+                @apply mb-4;
+            }
+
+            // Disables is-*
+            &:not([class*="is-"]) {
+                background: inherit;
+
+                &:hover {
+                    background-color: inherit;
+                }
+            }
+
+            &.detail {
+                @apply -mt-4;
+            }
+        }
+
+        tr:not(.detail):not(.is-empty):not(.table-footer) {
+            td {
+                @apply flex justify-between text-right w-auto border-b border-gray-200;
+                &:before {
+                    content: attr(data-label);
+                    @apply font-semibold pr-2 text-left;
+                }
+            }
+        }
+    }
+    }
+}
+

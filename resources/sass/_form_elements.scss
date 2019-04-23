@@ -1,0 +1,57 @@
+.form-input {
+    @apply appearance-none bg-gray-100 text-sm text-gray-800 border rounded px-2 py-1 leading-tight;
+
+    &:focus {
+        @apply outline-none bg-white border-gray-700;
+    }
+}
+
+
+fieldset {
+    @apply p-2 border bg-white;
+
+    > legend {
+
+        @apply bg-white border text-gray-500 ml-6 font-bold py-1 px-2 rounded leading-tight;
+
+
+    }
+}
+
+
+.form-radio-group {
+    @apply relative flex items-center;
+
+
+    > input[type=radio] {
+        @apply absolute opacity-0 pointer-events-none;
+    }
+
+    .form-radio-indicator {
+        @apply block h-6 w-6 border rounded-full;
+    }
+
+    > input[type=radio]:checked + .form-radio-indicator {
+        @apply block h-6 w-6 border-4 bg-indigo-500;
+    }
+}
+
+
+
+.form-checkbox-group {
+    @apply relative flex items-center;
+
+
+    > input[type=checkbox] {
+        @apply absolute opacity-0 pointer-events-none;
+    }
+
+    .form-checkbox-indicator {
+        @apply block h-6 w-6 border rounded relative;
+    }
+
+    > input[type=checkbox]:checked + .form-checkbox-indicator {
+        @apply block h-6 w-6 border-4 bg-indigo-500;
+
+    }
+}
