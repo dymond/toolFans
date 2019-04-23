@@ -9,34 +9,32 @@ require('./bootstrap')
 /*Toggle dropdown list*/
 /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
 
+var cer = document.getElementById('cerchio');
+var pro = document.getElementById('prova');
 
-function getMouseCoords(e) {
-  var e = e || window.event;
-  document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br><br><strong>hell yeah brother</strong>' + e.screenX + ', ' + e.screenY;
-}
+var mouseX = 0, mouseY = 0, limitX, limitY, containerWidth;
 
-var followCursor = (function() {
-  var s = document.createElement('div');
-  s.style.position = 'absolute';
-  s.style.zIndex = '9999';
-  s.style.margin = '0';
-  s.style.color = 'red';
-  s.style.padding = '5px';
-  s.innerHTML = '<strong>&#x1F918 hell yeah!!</strong>'
-  return {
-		init: function() {
-			document.body.appendChild(s);
-		},
-		run: function(e) {
-			var e = e || window.event;
-			s.style.left  = (e.clientX + 6) + 'px';
-			s.style.top = (e.clientY - 12) + 'px';
-			getMouseCoords(e);
-		}
-  };
-}());
-
-window.onload = function() {
-  followCursor.init();
-  document.body.onmousemove = followCursor.run;
-}
+window.onload = function(e) {
+  var containerObjStyle = window.getComputedStyle(document.querySelectorAll("body")[0]);
+  containerWidth =  parseFloat(containerObjStyle.width).toFixed(0);
+  containerHeight = parseFloat(containerObjStyle.height).toFixed(0);
+  var follower = document.getElementById("follower");
+  var xp = 0, yp = 0;
+  limitX = containerWidth-15;
+  limitY = containerHeight-15;
+  var loop = setInterval(function(){
+    xp = (mouseX == limitX) ? limitX : mouseX -7;
+    xp = (xp < 0) ? 0 : xp;
+    yp = (mouseY == limitY) ? limitY : mouseY -7;
+    yp = (yp < 0) ? 0 : yp;
+    follower.style.left = xp + 'px';
+    follower.style.top = yp + 'px';
+  }, 15);
+  window.onresize = function(e) {
+    limitX = parseFloat(window.getComputedStyle(document.querySelectorAll("body")[0]).width).toFixed(0);
+  }
+  document.onmousemove = function(e) {
+    mouseX = Math.min(e.pageX, limitX);
+    mouseY = Math.min(e.pageY, limitY);
+  }
+};

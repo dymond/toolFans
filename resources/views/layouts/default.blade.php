@@ -7,7 +7,7 @@
     @stack('header-scripts')
     @stack('header-styles')
 </head>
-<body class="bg-gray-900 font-sans leading-normal tracking-normal antialiased min-h-full">
+<body class="bg-gray-900 font-sans leading-normal tracking-normal antialiased min-h-full overflow-x-hidden cursor-none">
 @include('partials.header')
 <div id="app">
     @yield('content')
